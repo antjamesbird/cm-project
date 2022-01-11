@@ -30,3 +30,25 @@ h1 {
   background-color: var(--color-canvas-subtle);
   border-bottom: 1px solid var(--color-border-default);
 }
+
+.container {
+  max-width: 1012px;
+  margin: 40px auto 0 auto;
+  background-color: var(--color-canvas-default);
+  border-color: var(--color-border-default);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 6px;
+}
+
+.filter-container {
+  padding: 16px;
+  margin: -1px -1px 0;
+  background-color: var(--color-canvas-subtle);
+  border-color: var(--color-border-default);
+  border-style: solid;
+  border-width: 1px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  display: flex;
+}

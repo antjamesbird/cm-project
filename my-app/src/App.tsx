@@ -1,5 +1,5 @@
-// import * as React from "react";
 import Header from "./components/Header";
+import Filters from "./components/Filters";
 import "./App.css";
 
 function App() {
@@ -9,6 +9,10 @@ function App() {
         title="Trending"
         subText="See what the GitHub community is most excited about today."
       />
+      <div className="container">
+        <Filters />
+        <p>Other stuff</p>
+      </div>
     </div>
   );
 }
