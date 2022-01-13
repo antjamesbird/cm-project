@@ -5,6 +5,10 @@
   --color-border-default: #30363d;
   --color-canvas-overlay: #161b22;
   --color-shadow-large: #010409;
+  --color-accent-emphasis: #1f6feb;
+  --color-fg-on-emphasis: #f0f6fc;
+  --color-border-muted: #21262d;
+  --color-accent-fg: #58a6ff;
 }
 
 body {
@@ -41,7 +45,7 @@ h1 {
 }
 
 .filter-container {
-  padding: 16px;
+  padding: 20px;
   margin: -1px -1px 0;
   background-color: var(--color-canvas-subtle);
   border-color: var(--color-border-default);
@@ -58,7 +62,30 @@ h1 {
 }
 
 nav .tab {
-  color: yellow;
+  position: relative;
+  padding: 5px 16px;
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--color-fg-default);
+  border: 1px solid var(--color-border-default);
+  text-decoration: none;
+}
+
+nav .tab.active {
+  z-index: 2;
+  color: var(--color-fg-on-emphasis);
+  background-color: var(--color-accent-emphasis);
+  border-color: var(--color-accent-emphasis);
+}
+
+nav .tab:first-child {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+av .tab:last-child {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
 }
 
 .filter-menu {
@@ -104,4 +131,56 @@ nav .tab {
   border-right-color: transparent;
   border-bottom-color: transparent;
   border-left-color: transparent;
+}
+
+.box-row {
+  padding: 16px;
+  margin-top: -1px;
+  list-style-type: none;
+  border-top-color: var(--color-border-muted);
+  border-top-style: solid;
+  border-top-width: 1px;
+}
+
+.box-row .repo {
+  color: var(--color-accent-fg);
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.box-row .repo:hover {
+  text-decoration: underline;
+}
+
+.box-row span {
+  margin-right: 16px;
+}
+
+.octicon {
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+  margin-right: 5px;
+}
+
+.avatar-wrap {
+  display: inline-block;
+}
+
+.avatar {
+  vertical-align: middle;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.avatar.small {
+  width: 20px;
+  height: 20px;
+}
+
+.avatar.large {
+  width: 50px;
+  height: 50px;
 }

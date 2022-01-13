@@ -12,7 +12,7 @@ interface IFilterListProps {
   reset(): void;
 }
 
-const FilterList: React.FunctionComponent<IFilterListProps> = (props) => {
+const FilterList: React.FC<IFilterListProps> = (props) => {
   const [currentSelected, setCurrentSelected] = useState(
     props.defaultSelection
   );

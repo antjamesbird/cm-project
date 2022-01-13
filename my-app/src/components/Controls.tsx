@@ -15,12 +15,15 @@ const Controls = () => {
     filter: "",
   });
 
+  const handleTabClick = (index: number) => {
+    setTabIndex(index);
+  };
+
   const filterList = (value: string, filter: string) => {
     const filterList = originalData.filter(
       (item: any) => item[filter] === value
     );
     if (filterList.length > 0) {
-      console.log("gets here");
       queryClient.setQueryData(query, () => [...filterList]);
     }
   };
@@ -50,7 +53,7 @@ const Controls = () => {
     <div className="filter-container">
       <div className="primary">
         <Tabs
-          callBackFn={(index) => setTabIndex(index)}
+          callBackFn={(index) => handleTabClick(index)}
           tabs={[
             { name: "Repositories", route: "/" },
             { name: "Developers", route: "/developers" },

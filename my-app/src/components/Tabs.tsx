@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 interface ITabs {
   name: string;
@@ -12,17 +12,24 @@ interface ITabsProps {
 }
 
 const Tabs: React.FunctionComponent<ITabsProps> = (props) => {
-  const handleTabClick = (index: number) => {
+  const handleTabClick = (e: any, index: number) => {
     if (typeof props.callBackFn === "function") props.callBackFn(index);
   };
 
   return (
     <nav>
       {props.tabs &&
-        props.tabs.map((item: ITabs) => (
-          <Link className="tab" key={item.name} to={item.route}>
+        props.tabs.map((item: ITabs, index: number) => (
+          <NavLink
+            onClick={(e) => handleTabClick(e, index)}
+            className={({ isActive }) =>
+              isActive ? "tab active" : "tab inactive"
+            }
+            key={item.name}
+            to={item.route}
+          >
             {item.name}
-          </Link>
+          </NavLink>
         ))}
     </nav>
   );

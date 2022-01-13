@@ -5,7 +5,7 @@ interface IHeaderProps {
   subText: string;
 }
 
-const Header: React.FunctionComponent<IHeaderProps> = (props) => {
+const Header: React.FC<IHeaderProps> = (props) => {
   return (
     <div className="header">
       <h1>{props.title}</h1>
