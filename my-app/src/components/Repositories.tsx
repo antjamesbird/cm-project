@@ -1,8 +1,6 @@
 import { ENDPOINTS } from "../constants";
 import { useQuery } from "react-query";
 
-// Creatte interface for response payload
-
 const Repositories = () => {
   const fetchRepos = async () => {
     const response = await fetch(ENDPOINTS.repos);

@@ -1,9 +1,10 @@
 import Header from "./components/Header";
 import Controls from "./components/Controls";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import Repositories from "./components/Repositories";
 import Developers from "./components/Developers";
+
 import "./App.css";
 
 function App() {

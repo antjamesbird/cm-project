@@ -1,21 +1,56 @@
+import { useState, useEffect } from "react";
 import Tabs from "./Tabs";
 import FilterList from "./Filter";
 import { LANGUAGES } from "../constants";
+import { useQueryClient, useMutation } from "react-query";
 
 const Controls = () => {
-  const handleTabClick = (index: number) => {
-    console.log("the tab was clicked, index is", index);
+  const [tabIndex, setTabIndex] = useState(0);
+  const query = tabIndex === 0 ? "repositories" : "developers";
+  const queryClient = useQueryClient();
+
+  const [originalData, setOriginalData] = useState([]);
+  const [filterSettings, setfilterSettings] = useState({
+    value: "",
+    filter: "",
+  });
+
+  const filterList = (value: string, filter: string) => {
+    const filterList = originalData.filter(
+      (item: any) => item[filter] === value
+    );
+    if (filterList.length > 0) {
+      console.log("gets here");
+      queryClient.setQueryData(query, () => [...filterList]);
+    }
   };
 
-  const handleFilterSelect = (value: string, type: string) => {
-    console.log("clicked", value, type);
+  useEffect(() => {
+    filterList(filterSettings.value, filterSettings.filter);
+  }, [originalData]);
+
+  const handleFilterSelect = async (value: string, filter: string) => {
+    setfilterSettings({
+      value,
+      filter,
+    });
+
+    if (originalData.length === 0) {
+      const data: any = queryClient.getQueryData(query);
+      setOriginalData(data);
+    }
+    filterList(value, filter);
+  };
+
+  const handleReset = () => {
+    queryClient.setQueryData(query, () => [...originalData]);
   };
 
   return (
     <div className="filter-container">
       <div className="primary">
         <Tabs
-          callBackFn={handleTabClick}
+          callBackFn={(index) => setTabIndex(index)}
           tabs={[
             { name: "Repositories", route: "/" },
             { name: "Developers", route: "/developers" },
@@ -31,6 +66,7 @@ const Controls = () => {
           defaultSelection="Any"
           list={LANGUAGES}
           callBackFn={(arg) => handleFilterSelect(arg, "language")}
+          reset={handleReset}
         />
 
         <FilterList
@@ -40,6 +76,7 @@ const Controls = () => {
           defaultSelection="Today"
           list={[]}
           callBackFn={(arg) => handleFilterSelect(arg, "date")}
+          reset={handleReset}
         />
       </div>
     </div>

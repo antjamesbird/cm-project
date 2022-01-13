@@ -9,6 +9,7 @@ interface IFilterListProps {
   defaultSelection: string;
   list: Array<string>;
   callBackFn(index: string): void;
+  reset(): void;
 }
 
 const FilterList: React.FunctionComponent<IFilterListProps> = (props) => {
@@ -22,6 +23,11 @@ const FilterList: React.FunctionComponent<IFilterListProps> = (props) => {
     setCurrentSelected(value);
   };
 
+  const handleReset = () => {
+    props.reset();
+    setCurrentSelected(props.defaultSelection);
+  };
+
   return (
     <div className="filter-menu" onClick={() => setShowList(!showList)}>
       {props.label}: <strong>{currentSelected} </strong>
@@ -29,11 +35,18 @@ const FilterList: React.FunctionComponent<IFilterListProps> = (props) => {
         <div className="filter-list">
           <p>{props.text}</p>
           {props.hasSearch && (
-            <input type="text" placeholder={props.placeholderText} />
+            <div className="Search">
+              <input type="text" placeholder={props.placeholderText} />
+            </div>
           )}
 
           {props.list.length > 0 && (
             <ul>
+              {currentSelected !== props.defaultSelection && (
+                <li onClick={() => handleReset()}>
+                  <strong>X</strong> Clear Selection
+                </li>
+              )}
               {props.list.map((value) => (
                 <li onClick={() => handleSelection(value)} key={uuidv4()}>
                   {value}

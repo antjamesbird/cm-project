@@ -67,6 +67,10 @@ nav .tab {
   position: relative;
 }
 
+.filter-menu .Search {
+  position: fixed;
+}
+
 .filter-list {
   position: absolute;
   right: 0;

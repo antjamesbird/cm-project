@@ -1,8 +1,6 @@
 import { ENDPOINTS } from "../constants";
 import { useQuery } from "react-query";
 
-// TODO Create interface for response payload
-
 const Developers = () => {
   const fetchDevs = async () => {
     const response = await fetch(ENDPOINTS.devs);
