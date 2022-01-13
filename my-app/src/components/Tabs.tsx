@@ -1,7 +1,13 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
+
+interface ITabs {
+  name: string;
+  route: string;
+}
 
 interface ITabsProps {
-  tabs: Array<string>;
+  tabs: Array<ITabs>;
   callBackFn(index: number): void;
 }
 
@@ -12,14 +18,12 @@ const Tabs: React.FunctionComponent<ITabsProps> = (props) => {
 
   return (
     <nav>
-      <ul>
-        {props.tabs &&
-          props.tabs.map((description: string, index: number) => (
-            <li onClick={() => handleTabClick(index)} key={description}>
-              {description}
-            </li>
-          ))}
-      </ul>
+      {props.tabs &&
+        props.tabs.map((item: ITabs) => (
+          <Link className="tab" key={item.name} to={item.route}>
+            {item.name}
+          </Link>
+        ))}
     </nav>
   );
 };

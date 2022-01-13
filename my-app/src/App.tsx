@@ -1,18 +1,29 @@
 import Header from "./components/Header";
-import Filters from "./components/Filters";
+import Controls from "./components/Controls";
+import { Routes, Route, Link } from "react-router-dom";
+import { QueryClientProvider, QueryClient } from "react-query";
+import Repositories from "./components/Repositories";
+import Developers from "./components/Developers";
 import "./App.css";
 
 function App() {
+  const queryClient = new QueryClient();
+
   return (
     <div className="App">
-      <Header
-        title="Trending"
-        subText="See what the GitHub community is most excited about today."
-      />
-      <div className="container">
-        <Filters />
-        <p>Other stuff</p>
-      </div>
+      <QueryClientProvider client={queryClient}>
+        <Header
+          title="Trending"
+          subText="See what the GitHub community is most excited about today."
+        />
+        <div className="container">
+          <Controls />
+          <Routes>
+            <Route path="/" element={<Repositories />} />
+            <Route path="developers" element={<Developers />} />
+          </Routes>
+        </div>
+      </QueryClientProvider>
     </div>
   );
 }
