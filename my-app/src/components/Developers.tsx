@@ -2,6 +2,7 @@ import { ENDPOINTS } from "../constants";
 import { useQuery } from "react-query";
 import Avatar from "./Avatar";
 import Button from "./Button";
+import Loader from "./Loader";
 
 const Developers = () => {
   const fetchDevs = async () => {
@@ -14,10 +15,7 @@ const Developers = () => {
     fetchDevs
   );
 
-  console.log("data", data);
-  console.log("status", status);
-
-  if (isLoading) return <div>Loading......</div>;
+  if (isLoading) return <Loader />;
 
   if (isError) return <div>There was an error......</div>;
 

@@ -35,8 +35,6 @@ const FilterList: React.FC<IFilterListProps> = (props) => {
       (item) => item.toLowerCase().indexOf(value.toLowerCase()) > -1
     );
 
-    console.log("filterList", filterList);
-
     if (filterList.length > 0) setCurrentList(filterList);
   };
 

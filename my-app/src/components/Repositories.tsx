@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import Avatar from "./Avatar";
 import Button from "./Button";
 import { v4 as uuidv4 } from "uuid";
+import Loader from "./Loader";
 
 const Repositories = () => {
   const fetchRepos = async () => {
@@ -15,10 +16,7 @@ const Repositories = () => {
     fetchRepos
   );
 
-  console.log("data", data);
-  console.log("status", status);
-
-  if (isLoading) return <div>Loading......</div>;
+  if (isLoading) return <Loader />;
 
   if (isError) return <div>There was an error......</div>;
 
