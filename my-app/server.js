@@ -11,7 +11,6 @@ app.use((req, res, next) => {
 });
 
 app.get("/repos", (req, res) => {
-  //   const query = req.query.q;
   request(
     { url: `https://gh-trending-api.herokuapp.com/repositories` },
     (error, response, body) => {
@@ -25,7 +24,6 @@ app.get("/repos", (req, res) => {
 });
 
 app.get("/devs", (req, res) => {
-  //   const query = req.query.q;
   request(
     { url: `https://gh-trending-api.herokuapp.com/developers` },
 
