@@ -22,7 +22,6 @@ const FilterList: React.FC<IFilterListProps> = (props) => {
   const handleSelection = (value: string) => {
     props.callBackFn(value);
     setCurrentSelected(value);
-    console.log("selected");
   };
 
   const handleReset = () => {
@@ -42,43 +41,49 @@ const FilterList: React.FC<IFilterListProps> = (props) => {
   };
 
   return (
-    <div className="filter-menu">
-      <span onClick={() => setShowList(!showList)}>
-        {props.label}: <strong>{currentSelected} </strong>
-      </span>
-      <div className="Search-Wrap">
+    <>
+      {showList && (
+        <div onClick={() => setShowList(!showList)} className="overlay"></div>
+      )}
+      <div className="filter-menu">
+        <span onClick={() => setShowList(!showList)}>
+          {props.label}: <strong>{currentSelected} </strong>
+        </span>
+
         {props.hasSearch && showList && (
-          <div className="Search">
-            <input
-              onChange={(e) => handleSearch(e)}
-              className="form-control"
-              type="text"
-              placeholder={props.placeholderText}
-            />
+          <div className="Search-Wrap">
+            <div className="Search">
+              <p>{props.text}</p>
+              <input
+                onChange={(e) => handleSearch(e)}
+                className="form-control"
+                type="text"
+                placeholder={props.placeholderText}
+              />
+            </div>
+          </div>
+        )}
+
+        {showList && (
+          <div className="filter-list">
+            {props.list.length > 0 && (
+              <ul style={{ marginTop: props.hasSearch ? "90px" : "10px" }}>
+                {currentSelected !== props.defaultSelection && (
+                  <li onClick={() => handleReset()}>
+                    <strong>X</strong> Clear Selection
+                  </li>
+                )}
+                {currentList.map((value) => (
+                  <li onClick={() => handleSelection(value)} key={uuidv4()}>
+                    {value}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         )}
       </div>
-      {showList && (
-        <div className="filter-list">
-          <p>{props.text}</p>
-
-          {props.list.length > 0 && (
-            <ul>
-              {currentSelected !== props.defaultSelection && (
-                <li onClick={() => handleReset()}>
-                  <strong>X</strong> Clear Selection
-                </li>
-              )}
-              {currentList.map((value) => (
-                <li onClick={() => handleSelection(value)} key={uuidv4()}>
-                  {value}
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      )}
-    </div>
+    </>
   );
 };
 

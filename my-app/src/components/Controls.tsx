@@ -23,6 +23,9 @@ const Controls = () => {
     const filterList = originalData.filter(
       (item: any) => item[filter] === value
     );
+
+    console.log("filterList", filterList);
+
     if (filterList.length > 0) {
       queryClient.setQueryData(query, () => [...filterList]);
     }

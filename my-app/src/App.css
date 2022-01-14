@@ -52,6 +52,15 @@ h1 {
   border-bottom: 1px solid var(--color-border-default);
 }
 
+.header h1 {
+  padding: 40px 0 10px;
+  font-size: 32px;
+}
+
+.header p {
+  margin-top: 0;
+}
+
 .container {
   max-width: 1012px;
   margin: 40px auto 0 auto;
@@ -119,16 +128,21 @@ nav .tab:last-child {
 
 .filter-menu .Search-Wrap {
   position: absolute;
-  z-index: 100;
+  z-index: 101;
+  background-color: var(--color-canvas-overlay);
   right: 1px;
-  top: 65px;
+  top: 26px;
   width: 290px;
+}
+
+.filter-menu .Search-Wrap p {
+  margin-left: 5px;
 }
 
 .filter-list {
   position: absolute;
   right: 0;
-  top: 10;
+  z-index: 100;
   width: 300px;
   height: 488px;
   overflow-y: scroll;
@@ -160,11 +174,6 @@ nav .tab:last-child {
 
 .filter-list ul {
   padding: 0;
-  margin-top: 45px;
-}
-
-.filter-list p {
-  padding-left: 15px;
 }
 
 .filter-menu::after {
@@ -182,6 +191,7 @@ nav .tab:last-child {
 .box-row {
   padding: 16px;
   margin-top: -1px;
+  color: var(--color-fg-muted);
   list-style-type: none;
   border-top-color: var(--color-border-muted);
   border-top-style: solid;
@@ -189,9 +199,24 @@ nav .tab:last-child {
   display: flex;
 }
 
+.box-row p {
+  margin-top: 5px;
+}
+
+.box-row .starsSince {
+  padding-top: 30px;
+}
+
 .box-row .heading {
   color: var(--color-accent-fg);
   font-size: 20px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.box-row .headingSmall {
+  color: var(--color-accent-fg);
+  font-size: 16px;
   font-weight: 600;
   text-decoration: none;
 }
@@ -202,6 +227,19 @@ nav .tab:last-child {
 
 .box-row span {
   margin-right: 16px;
+}
+
+.box-row .dev-content div {
+  padding-left: 15px;
+}
+
+.box-row .dev-content div p {
+  margin-top: 0;
+}
+
+.box-row .popular-repo {
+  font-size: 12px;
+  margin-bottom: 0;
 }
 
 .octicon {
@@ -293,4 +331,13 @@ nav .tab:last-child {
 
 .dev-content div:last-child {
   text-align: right;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  z-index: 99;
+  top: 0;
+  left: 0;
 }

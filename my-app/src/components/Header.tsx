@@ -9,7 +9,7 @@ const Header: React.FC<IHeaderProps> = (props) => {
   return (
     <div className="header">
       <h1>{props.title}</h1>
-      <p>{props.subText}</p>
+      <p className="color-fg-muted">{props.subText}</p>
     </div>
   );
 };

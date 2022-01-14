@@ -93,7 +93,7 @@ const Repositories = () => {
                 {item.forks}
               </span>
               <div className="avatar-wrap">
-                Built By:
+                <span>Built By:</span>
                 {item.builtBy.map((el: any) => (
                   <Avatar key={uuidv4()} avatar={el.avatar} size="small" />
                 ))}
@@ -102,7 +102,7 @@ const Repositories = () => {
           </div>
           <div className="content-right">
             <Button hasIcon icon={<StarIcon />} text="Star" />
-            <p>
+            <p className="starsSince">
               <svg
                 aria-label="star"
                 role="img"
