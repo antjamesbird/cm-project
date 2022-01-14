@@ -9,6 +9,12 @@
   --color-fg-on-emphasis: #f0f6fc;
   --color-border-muted: #21262d;
   --color-accent-fg: #58a6ff;
+  --color-fg-muted: #8b949e;
+  --color-btn-text: #c9d1d9;
+  --color-btn-bg: #21262d;
+  --color-btn-border: #363b41;
+  --color-severe-fg: #db6d28;
+  --color-sponsors-fg: #db61a2;
 }
 
 body {
@@ -20,6 +26,18 @@ body {
   background-color: var(--color-canvas-default);
   margin: 0;
   padding: 0;
+}
+
+.color-fg-muted {
+  color: var(--color-fg-muted);
+}
+
+.color-fg-severe {
+  color: var(--color-severe-fg);
+}
+
+.color-fg-sponsors {
+  color: var(--color-sponsors-fg);
 }
 
 h1 {
@@ -83,7 +101,7 @@ nav .tab:first-child {
   border-bottom-left-radius: 6px;
 }
 
-av .tab:last-child {
+nav .tab:last-child {
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
 }
@@ -92,10 +110,19 @@ av .tab:last-child {
   display: inline-block;
   cursor: pointer;
   position: relative;
+  margin-right: 25px;
 }
 
 .filter-menu .Search {
-  position: fixed;
+  background-color: var(--color-canvas-overlay);
+}
+
+.filter-menu .Search-Wrap {
+  position: absolute;
+  z-index: 100;
+  right: 1px;
+  top: 65px;
+  width: 290px;
 }
 
 .filter-list {
@@ -119,6 +146,25 @@ av .tab:last-child {
 
 .filter-list li {
   list-style: none;
+  display: block;
+  padding: 8px 8px 8px 30px;
+  overflow: hidden;
+  color: inherit;
+  cursor: pointer;
+  border-bottom: 1px solid var(--color-border-muted);
+}
+
+.filter-list li:hover {
+  background-color: var(--color-accent-emphasis);
+}
+
+.filter-list ul {
+  padding: 0;
+  margin-top: 45px;
+}
+
+.filter-list p {
+  padding-left: 15px;
 }
 
 .filter-menu::after {
@@ -140,16 +186,17 @@ av .tab:last-child {
   border-top-color: var(--color-border-muted);
   border-top-style: solid;
   border-top-width: 1px;
+  display: flex;
 }
 
-.box-row .repo {
+.box-row .heading {
   color: var(--color-accent-fg);
   font-size: 20px;
   font-weight: 600;
   text-decoration: none;
 }
 
-.box-row .repo:hover {
+.box-row .heading:hover {
   text-decoration: underline;
 }
 
@@ -183,4 +230,67 @@ av .tab:last-child {
 .avatar.large {
   width: 50px;
   height: 50px;
+}
+
+.box-row .content-left {
+  width: 80%;
+}
+
+.box-row .content-right {
+  width: 20%;
+  text-align: right;
+}
+
+.btn {
+  color: var(--color-btn-text);
+  background-color: var(--color-btn-bg);
+  transition: 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 20px;
+  position: relative;
+  margin-left: 10px;
+  display: inline-block;
+  padding: 5px 16px;
+  font-weight: 500;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  border: 1px solid var(--color-border-default);
+  border-radius: 6px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.form-control {
+  padding: 5px 12px;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-fg-default);
+  vertical-align: middle;
+  background-color: var(--color-canvas-default);
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  border: 1px solid var(--color-border-default);
+  border-radius: 6px;
+  outline: none;
+  box-shadow: var(--color-accent-emphasis);
+  width: 85%;
+  border-radius: 6px;
+}
+
+.dev-content {
+  display: flex;
+  width: 100%;
+}
+
+.dev-content div {
+  width: 33%;
+}
+
+.dev-content div:last-child {
+  text-align: right;
 }

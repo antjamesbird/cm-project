@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { SyntheticEvent, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 interface IFilterListProps {
@@ -17,10 +17,12 @@ const FilterList: React.FC<IFilterListProps> = (props) => {
     props.defaultSelection
   );
   const [showList, setShowList] = useState(false);
+  const [currentList, setCurrentList] = useState(props.list);
 
   const handleSelection = (value: string) => {
     props.callBackFn(value);
     setCurrentSelected(value);
+    console.log("selected");
   };
 
   const handleReset = () => {
@@ -28,17 +30,37 @@ const FilterList: React.FC<IFilterListProps> = (props) => {
     setCurrentSelected(props.defaultSelection);
   };
 
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    const filterList = props.list.filter(
+      (item) => item.toLowerCase().indexOf(value.toLowerCase()) > -1
+    );
+
+    console.log("filterList", filterList);
+
+    if (filterList.length > 0) setCurrentList(filterList);
+  };
+
   return (
-    <div className="filter-menu" onClick={() => setShowList(!showList)}>
-      {props.label}: <strong>{currentSelected} </strong>
+    <div className="filter-menu">
+      <span onClick={() => setShowList(!showList)}>
+        {props.label}: <strong>{currentSelected} </strong>
+      </span>
+      <div className="Search-Wrap">
+        {props.hasSearch && showList && (
+          <div className="Search">
+            <input
+              onChange={(e) => handleSearch(e)}
+              className="form-control"
+              type="text"
+              placeholder={props.placeholderText}
+            />
+          </div>
+        )}
+      </div>
       {showList && (
         <div className="filter-list">
           <p>{props.text}</p>
-          {props.hasSearch && (
-            <div className="Search">
-              <input type="text" placeholder={props.placeholderText} />
-            </div>
-          )}
 
           {props.list.length > 0 && (
             <ul>
@@ -47,7 +69,7 @@ const FilterList: React.FC<IFilterListProps> = (props) => {
                   <strong>X</strong> Clear Selection
                 </li>
               )}
-              {props.list.map((value) => (
+              {currentList.map((value) => (
                 <li onClick={() => handleSelection(value)} key={uuidv4()}>
                   {value}
                 </li>

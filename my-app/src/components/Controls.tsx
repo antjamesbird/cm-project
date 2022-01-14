@@ -77,7 +77,7 @@ const Controls = () => {
           text="Date range"
           label="Spoken Language"
           defaultSelection="Today"
-          list={[]}
+          list={["Today", "This week", "This month"]}
           callBackFn={(arg) => handleFilterSelect(arg, "date")}
           reset={handleReset}
         />
